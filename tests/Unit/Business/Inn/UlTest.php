@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class UlTest extends TestCase
 {
     /**
-     * @dataProvider innFlProvider
+     * @dataProvider dataProvider
      * @return void
      */
     public function test_ul_inn(string $inn, $expectedResult)
@@ -20,7 +20,7 @@ class UlTest extends TestCase
         $this->assertSame($expectedResult, $validator->passes());
     }
 
-    public static function innFlProvider(): array
+    public static function dataProvider(): array
     {
         return [
             ['6663003127', true],
@@ -33,6 +33,7 @@ class UlTest extends TestCase
             ['3016003718', true],
             ['5053051872', true],
             ['7701105460', true],
+            ['77011 5460', false],
             ['77011054601', false],
             ['A701105460', false],
             ['770110546A', false],

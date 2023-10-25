@@ -10,16 +10,17 @@ use Illuminate\Support\Facades\Validator;
 class OgrnTest extends TestCase
 {
     /**
-     * @dataProvider innFlProvider
+     * @dataProvider dataProvider
      * @return void
      */
     public function test_ogrn(string $value, $expectedResult)
     {
         $validator = Validator::make(['ogrn' => $value], ['ogrn' => 'russian_ogrn']);
+
         $this->assertSame($expectedResult, $validator->passes());
     }
 
-    public static function innFlProvider(): array
+    public static function dataProvider(): array
     {
         return [
             ['1027739642281', true],
@@ -30,6 +31,7 @@ class OgrnTest extends TestCase
             ['1026402000657', true],
             ['102640200065', false],
             ['10264020006571', false],
+            ['10264020 6571', false],
         ];
     }
 }

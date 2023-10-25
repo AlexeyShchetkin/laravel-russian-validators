@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class AnyTest extends TestCase
 {
     /**
-     * @dataProvider innFlProvider
+     * @dataProvider dataProvider
      * @return void
      */
     public function test_any_inn(string $inn, $expectedResult)
@@ -20,7 +20,7 @@ class AnyTest extends TestCase
         $this->assertSame($expectedResult, $validator->passes());
     }
 
-    public static function innFlProvider(): array
+    public static function dataProvider(): array
     {
         return [
             ['6663003127', true],
@@ -48,6 +48,7 @@ class AnyTest extends TestCase
             ['771902452360', true],
             ['702100195003', true],
             ['500100732259', true],
+            ['50010 732259', false],
             ['5001007322591', false],
             ['A00100732259', false],
             ['50010073225A', false],

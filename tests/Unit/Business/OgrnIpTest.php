@@ -10,16 +10,17 @@ use Illuminate\Support\Facades\Validator;
 class OgrnIpTest extends TestCase
 {
     /**
-     * @dataProvider innFlProvider
+     * @dataProvider dataProvider
      * @return void
      */
     public function test_ogrn(string $value, $expectedResult)
     {
         $validator = Validator::make(['ogrnip' => $value], ['ogrnip' => 'russian_ogrnip']);
+
         $this->assertSame($expectedResult, $validator->passes());
     }
 
-    public static function innFlProvider(): array
+    public static function dataProvider(): array
     {
         return [
             ['316861700133226', true],
@@ -28,6 +29,8 @@ class OgrnIpTest extends TestCase
             ['312580305800014', true],
             ['3125803058000141', false],
             ['31258030580001', false],
+            ['31258030A800014', false],
+            ['31258030 800014', false],
         ];
     }
 }
