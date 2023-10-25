@@ -1,8 +1,9 @@
-# Валидатор документов РФ
+# Validators for Russian documentation
 
-Для валидации требуется на вход подавать данные без разделителей (пробелы, символы дефиса и тире, иные специальные символы).
+For validation, input data must be submitted without delimiters (spaces, hyphens and dashes, and other special characters).
+For example: 
 
-### Доступные проверки
+### Available validators
 
 | Наименование            | Описание                                |
 |-------------------------|-----------------------------------------|
@@ -24,17 +25,25 @@
 | russian_okato           | Код ОКАТО                               |
 | russian_okpo            | Код ОКПО                                |
 
-## Установка
+## Installation
+You can install the package via composer:
 ```shell
 composer require alexeyschetkin/laravel-russian-validators
 ```
 
-## Использование
+## Usage
 ```php
 <?php
 
 ```
-## Тесты
+## Testing
 ```shell
-vendor/bin/phpunit 
+composer test 
 ```
+## Credits
+
+- [Alexey Shchetkin](https://github.com/AlexeyShchetkin)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
