@@ -13,6 +13,7 @@ use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Kpp;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Ogrn;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\OgrnIp;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Okato;
+use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Okpo;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Oktmo;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Personal\Snils;
 use Illuminate\Support\Facades\Validator;
@@ -87,6 +88,11 @@ class LaravelRussianValidatorsServiceProvider extends ServiceProvider
 
         Validator::extend('russian_okato', function ($attribute, $value) {
             $validator = Validator::make([$attribute => $value], [$attribute => new Okato()]);
+            return $validator->passes();
+        });
+
+        Validator::extend('russian_okpo', function ($attribute, $value) {
+            $validator = Validator::make([$attribute => $value], [$attribute => new Okpo()]);
             return $validator->passes();
         });
     }
