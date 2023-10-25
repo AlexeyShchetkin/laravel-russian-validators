@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace AlexeyShchetkin\LaravelRussianValidators\Tests\Unit\Business\Inn;
+namespace AlexeyShchetkin\LaravelRussianValidators\Tests\Unit\Rules;
 
 use AlexeyShchetkin\LaravelRussianValidators\Tests\TestCase;
 use Illuminate\Support\Facades\Validator;
 
-class FlTest extends TestCase
+class InnAnyTest extends TestCase
 {
     /**
      * @dataProvider dataProvider
      * @return void
      */
-    public function test_fl_inn(string $inn, $expectedResult)
+    public function test_any_inn(string $inn, $expectedResult)
     {
-        $validator = Validator::make(['inn' => $inn], ['inn' => 'russian_inn:fl']);
+        $validator = Validator::make(['inn' => $inn], ['inn' => 'russian_inn']);
 
         $this->assertSame($expectedResult, $validator->passes());
     }
@@ -23,6 +23,21 @@ class FlTest extends TestCase
     public static function dataProvider(): array
     {
         return [
+            ['6663003127', true],
+            ['7708503727', true],
+            ['7736050003', true],
+            ['7452027843', true],
+            ['6658021579', true],
+            ['7725604637', true],
+            ['4401006984', true],
+            ['3016003718', true],
+            ['5053051872', true],
+            ['7701105460', true],
+            ['77011054601', false],
+            ['A701105460', false],
+            ['770110546A', false],
+            ['77011A5460', false],
+            ['7701105461', false],
             ['561100409545', true],
             ['666200351548', true],
             ['366512608416', true],

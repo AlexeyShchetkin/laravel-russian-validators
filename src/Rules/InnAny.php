@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Inn;
+namespace AlexeyShchetkin\LaravelRussianValidators\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 
-class Any implements Rule
+class InnAny implements Rule
 {
 
     public function passes($attribute, $value): bool

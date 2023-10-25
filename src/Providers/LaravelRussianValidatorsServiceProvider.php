@@ -6,15 +6,15 @@ namespace AlexeyShchetkin\LaravelRussianValidators\Providers;
 
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Bank\Bik;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Bank\Ks;
-use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Inn\Any;
-use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Inn\Fl;
-use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Inn\Ul;
+use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Inn as BusinessInn;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Kpp;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Ogrn;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\OgrnIp;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Okato;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Okpo;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Oktmo;
+use AlexeyShchetkin\LaravelRussianValidators\Rules\InnAny;
+use AlexeyShchetkin\LaravelRussianValidators\Rules\Personal\Inn as PersonalInn;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Personal\Passport;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Personal\Snils;
 use Illuminate\Support\Facades\Validator;
@@ -47,15 +47,16 @@ class LaravelRussianValidatorsServiceProvider extends ServiceProvider
             $validationType = $parameters[0] ?? 'any';
             switch ($validationType) {
                 case 'ul':
-                    $validator = Validator::make([$attribute => $value], [$attribute => new Ul()]);
+                    $validator = Validator::make([$attribute => $value], [$attribute => new BusinessInn()]);
                     break;
                 case 'fl':
-                    $validator = Validator::make([$attribute => $value], [$attribute => new Fl()]);
+                    $validator = Validator::make([$attribute => $value], [$attribute => new PersonalInn()]);
                     break;
                 case 'any':
-                default:
-                    $validator = Validator::make([$attribute => $value], [$attribute => new Any()]);
+                    $validator = Validator::make([$attribute => $value], [$attribute => new InnAny()]);
                     break;
+                default:
+                    return false;
             }
             return $validator->passes();
         });

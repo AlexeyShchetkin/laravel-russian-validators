@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Inn;
+namespace AlexeyShchetkin\LaravelRussianValidators\Rules\Personal;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class Fl implements Rule
+class Inn implements Rule
 {
     private const N1_WEIGHTS = [
         7,

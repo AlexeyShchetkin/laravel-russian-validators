@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace AlexeyShchetkin\LaravelRussianValidators\Tests\Unit\Business\Inn;
+namespace AlexeyShchetkin\LaravelRussianValidators\Tests\Unit\Rules\Business;
 
 use AlexeyShchetkin\LaravelRussianValidators\Tests\TestCase;
 use Illuminate\Support\Facades\Validator;
 
-class UlTest extends TestCase
+class InnTest extends TestCase
 {
     /**
      * @dataProvider dataProvider
