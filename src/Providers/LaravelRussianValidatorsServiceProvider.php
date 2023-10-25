@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AlexeyShchetkin\LaravelRussianValidators\Providers;
 
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Bank\Bik;
+use AlexeyShchetkin\LaravelRussianValidators\Rules\Bank\Ks;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Inn\Any;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Inn\Fl;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Inn\Ul;
@@ -58,6 +59,11 @@ class LaravelRussianValidatorsServiceProvider extends ServiceProvider
 
         Validator::extend('russian_bik', function ($attribute, $value) {
             $validator = Validator::make([$attribute => $value], [$attribute => new Bik()]);
+            return $validator->passes();
+        });
+
+        Validator::extend('russian_ks', function ($attribute, $value) {
+            $validator = Validator::make([$attribute => $value], [$attribute => new Ks()]);
             return $validator->passes();
         });
     }
