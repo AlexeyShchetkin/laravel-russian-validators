@@ -66,5 +66,10 @@ class LaravelRussianValidatorsServiceProvider extends ServiceProvider
             $validator = Validator::make([$attribute => $value], [$attribute => new Ks()]);
             return $validator->passes();
         });
+
+        Validator::extend('russian_rs', function ($attribute, $value) {
+            $validator = Validator::make([$attribute => $value], [$attribute => new Ks()]);
+            return $validator->passes();
+        });
     }
 }
