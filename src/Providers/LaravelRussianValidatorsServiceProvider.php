@@ -9,6 +9,7 @@ use AlexeyShchetkin\LaravelRussianValidators\Rules\Inn\Fl;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Inn\Ul;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Kpp;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Ogrn;
+use AlexeyShchetkin\LaravelRussianValidators\Rules\OgrnIp;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -46,6 +47,11 @@ class LaravelRussianValidatorsServiceProvider extends ServiceProvider
 
         Validator::extend('russian_ogrn', function ($attribute, $value) {
             $validator = Validator::make([$attribute => $value], [$attribute => new Ogrn()]);
+            return $validator->passes();
+        });
+
+        Validator::extend('russian_ogrnip', function ($attribute, $value) {
+            $validator = Validator::make([$attribute => $value], [$attribute => new OgrnIp()]);
             return $validator->passes();
         });
     }
