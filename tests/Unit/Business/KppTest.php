@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AlexeyShchetkin\LaravelRussianValidators\Tests\Unit;
+namespace AlexeyShchetkin\LaravelRussianValidators\Tests\Unit\Business;
 
 use AlexeyShchetkin\LaravelRussianValidators\Tests\TestCase;
 use Illuminate\Support\Facades\Validator;

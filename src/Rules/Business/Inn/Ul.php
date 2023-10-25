@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AlexeyShchetkin\LaravelRussianValidators\Rules\Inn;
+namespace AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Inn;
 
 use Illuminate\Contracts\Validation\Rule;
 

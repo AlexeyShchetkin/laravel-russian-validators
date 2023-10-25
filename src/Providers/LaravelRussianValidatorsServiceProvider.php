@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace AlexeyShchetkin\LaravelRussianValidators\Providers;
 
-use AlexeyShchetkin\LaravelRussianValidators\Rules\Inn\Any;
-use AlexeyShchetkin\LaravelRussianValidators\Rules\Inn\Fl;
-use AlexeyShchetkin\LaravelRussianValidators\Rules\Inn\Ul;
-use AlexeyShchetkin\LaravelRussianValidators\Rules\Kpp;
-use AlexeyShchetkin\LaravelRussianValidators\Rules\Ogrn;
-use AlexeyShchetkin\LaravelRussianValidators\Rules\OgrnIp;
+use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Inn\Any;
+use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Inn\Fl;
+use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Inn\Ul;
+use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Kpp;
+use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Ogrn;
+use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\OgrnIp;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 

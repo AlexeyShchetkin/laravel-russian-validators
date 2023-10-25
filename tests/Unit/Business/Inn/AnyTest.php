@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace AlexeyShchetkin\LaravelRussianValidators\Tests\Unit\Inn;
+namespace AlexeyShchetkin\LaravelRussianValidators\Tests\Unit\Business\Inn;
 
 use AlexeyShchetkin\LaravelRussianValidators\Tests\TestCase;
 use Illuminate\Support\Facades\Validator;
 
-class UlTest extends TestCase
+class AnyTest extends TestCase
 {
     /**
      * @dataProvider innFlProvider
      * @return void
      */
-    public function test_ul_inn(string $inn, $expectedResult)
+    public function test_any_inn(string $inn, $expectedResult)
     {
-        $validator = Validator::make(['inn' => $inn], ['inn' => 'russian_inn:ul']);
+        $validator = Validator::make(['inn' => $inn], ['inn' => 'russian_inn']);
 
         $this->assertSame($expectedResult, $validator->passes());
     }
@@ -38,6 +38,24 @@ class UlTest extends TestCase
             ['770110546A', false],
             ['77011A5460', false],
             ['7701105461', false],
+            ['561100409545', true],
+            ['666200351548', true],
+            ['366512608416', true],
+            ['773173084809', true],
+            ['771409116994', true],
+            ['503115929542', true],
+            ['773400211252', true],
+            ['771902452360', true],
+            ['702100195003', true],
+            ['500100732259', true],
+            ['5001007322591', false],
+            ['A00100732259', false],
+            ['50010073225A', false],
+            ['50010A732259', false],
+            ['50010A732248', false],
+            ['50010A732258', false],
         ];
     }
+
+
 }
