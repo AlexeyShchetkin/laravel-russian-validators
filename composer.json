@@ -1,0 +1,37 @@
+{
+  "name": "alexeyshchetkin/laravel-russian-validators",
+  "version": "1.0",
+  "type": "library",
+  "require": {
+    "php": "^7.4|^8",
+    "illuminate/support": ">=8"
+  },
+  "require-dev": {
+    "orchestra/testbench": "*",
+    "phpunit/phpunit": "*"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "AlexeyShchetkin\\LaravelRussianValidators\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "AlexeyShchetkin\\LaravelRussianValidators\\Tests\\": "tests/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Alexey Shchetkin",
+      "email": "alexey.shchetkin@gmail.com"
+    }
+  ],
+  "extra": {
+    "laravel": {
+      "providers": [
+        "AlexeyShchetkin\\LaravelRussianValidators\\Providers\\LaravelRussianValidatorsServiceProvider"
+      ]
+    }
+  }
+}
