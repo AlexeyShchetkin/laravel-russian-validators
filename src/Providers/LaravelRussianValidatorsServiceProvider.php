@@ -16,6 +16,7 @@ use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Oktmo;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\InnAny;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Personal\Inn as PersonalInn;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Personal\Passport;
+use AlexeyShchetkin\LaravelRussianValidators\Rules\Personal\PassportCode;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Personal\Snils;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
@@ -37,6 +38,9 @@ class LaravelRussianValidatorsServiceProvider extends ServiceProvider
                 case 'number':
                 case 'full':
                     $validator = Validator::make([$attribute => $value], [$attribute => new Passport($validationType)]);
+                    break;
+                case 'code':
+                    $validator = Validator::make([$attribute => $value], [$attribute => new PassportCode()]);
                     break;
                 default:
                     return false;

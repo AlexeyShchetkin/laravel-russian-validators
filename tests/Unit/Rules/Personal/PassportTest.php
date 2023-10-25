@@ -43,6 +43,17 @@ class PassportTest extends TestCase
         $this->assertSame($expectedResult, $validator->passes());
     }
 
+    /**
+     * @dataProvider passportCodeDataProvider
+     * @return void
+     */
+    public function test_passport_code(string $value, $expectedResult)
+    {
+        $validator = Validator::make(['passport' => $value], ['passport' => 'russian_passport:code']);
+
+        $this->assertSame($expectedResult, $validator->passes());
+    }
+
     public static function passportDataProvider(): array
     {
         return [
@@ -77,7 +88,6 @@ class PassportTest extends TestCase
         ];
     }
 
-
     public static function passportNumberDataProvider(): array
     {
         return [
@@ -86,6 +96,20 @@ class PassportTest extends TestCase
             ['733706', true],
             ['766027', true],
             ['470984', true],
+            ['470984', true],
+            ['61619', false],
+            ['6161999', false],
+            ['6D6199', false],
+            ['6 6199', false],
+        ];
+    }
+
+    public static function passportCodeDataProvider(): array
+    {
+        return [
+            ['100559', true],
+            ['885467', true],
+            ['733706', true],
             ['470984', true],
             ['61619', false],
             ['6161999', false],
