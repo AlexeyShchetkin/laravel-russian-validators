@@ -8,6 +8,7 @@ use AlexeyShchetkin\LaravelRussianValidators\Rules\Inn\Any;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Inn\Fl;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Inn\Ul;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Kpp;
+use AlexeyShchetkin\LaravelRussianValidators\Rules\Ogrn;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,21 +26,26 @@ class LaravelRussianValidatorsServiceProvider extends ServiceProvider
             $innType = $parameters[0] ?? 'any';
             switch ($innType) {
                 case 'ul':
-                    $validator = Validator::make([$attribute => $value], [$attribute => ['digits:10', new Ul()]]);
+                    $validator = Validator::make([$attribute => $value], [$attribute => new Ul()]);
                     break;
                 case 'fl':
-                    $validator = Validator::make([$attribute => $value], [$attribute => ['digits:12', new Fl()]]);
+                    $validator = Validator::make([$attribute => $value], [$attribute => new Fl()]);
                     break;
                 case 'any':
                 default:
-                    $validator = Validator::make([$attribute => $value], [$attribute => [new Any()]]);
+                    $validator = Validator::make([$attribute => $value], [$attribute => new Any()]);
                     break;
             }
             return $validator->passes();
         });
 
         Validator::extend('russian_kpp', function ($attribute, $value) {
-            $validator = Validator::make([$attribute => $value], [$attribute => ['size:9', new Kpp()]]);
+            $validator = Validator::make([$attribute => $value], [$attribute => new Kpp()]);
+            return $validator->passes();
+        });
+
+        Validator::extend('russian_ogrn', function ($attribute, $value) {
+            $validator = Validator::make([$attribute => $value], [$attribute => new Ogrn()]);
             return $validator->passes();
         });
     }

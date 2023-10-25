@@ -23,7 +23,8 @@ class Ul implements Rule
     public function passes($attribute, $value): bool
     {
         return 10 === mb_strlen($value)
-            && $this->isValidN1ControlSum($value);
+            && is_numeric($value)
+            && $this->isValidN1ControlSum($value, (int)$value[-1]);
     }
 
     public function message(): string
@@ -31,7 +32,7 @@ class Ul implements Rule
         return trans('The :attribute has incorrect checksum');
     }
 
-    private function isValidN1ControlSum($value): bool
+    private function isValidN1ControlSum(string $value, int $controlValue): bool
     {
         $controlSum = 0;
         for ($i = 0; $i < sizeof(self::N1_WEIGHTS); $i++) {
@@ -41,6 +42,6 @@ class Ul implements Rule
         if (9 < $controlSum) {
             $controlSum = $controlSum % 10;
         }
-        return $controlSum === (int)$value[-1];
+        return $controlSum === $controlValue;
     }
 }

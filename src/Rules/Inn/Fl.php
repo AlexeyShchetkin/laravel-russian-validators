@@ -37,6 +37,7 @@ class Fl implements Rule
     public function passes($attribute, $value): bool
     {
         return 12 === mb_strlen($value)
+            && is_numeric($value)
             && $this->isValidN1ControlSum($value, (int)$value[-2])
             && $this->isValidN2ControlSum($value, (int)$value[-1]);
     }
@@ -60,7 +61,7 @@ class Fl implements Rule
         return $controlSum === $controlValue;
     }
 
-    private function isValidN2ControlSum($value, $controlValue): bool
+    private function isValidN2ControlSum(string $value, int $controlValue): bool
     {
         $controlSum = 0;
         for ($i = 0; $i < sizeof(self::N2_WEIGHTS); $i++) {
