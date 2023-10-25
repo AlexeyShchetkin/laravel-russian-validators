@@ -15,6 +15,7 @@ use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\OgrnIp;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Okato;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Okpo;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Oktmo;
+use AlexeyShchetkin\LaravelRussianValidators\Rules\Personal\Passport;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Personal\Snils;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
@@ -29,9 +30,22 @@ class LaravelRussianValidatorsServiceProvider extends ServiceProvider
     /** Bootstrap any application services. */
     public function boot(): void
     {
+        Validator::extend('russian_passport', function ($attribute, $value, $parameters) {
+            $validationType = $parameters[0] ?? 'full';
+            switch ($validationType) {
+                case 'series':
+                case 'number':
+                case 'full':
+                    $validator = Validator::make([$attribute => $value], [$attribute => new Passport($validationType)]);
+                    break;
+                default:
+                    return false;
+            }
+            return $validator->passes();
+        });
         Validator::extend('russian_inn', function ($attribute, $value, $parameters) {
-            $innType = $parameters[0] ?? 'any';
-            switch ($innType) {
+            $validationType = $parameters[0] ?? 'any';
+            switch ($validationType) {
                 case 'ul':
                     $validator = Validator::make([$attribute => $value], [$attribute => new Ul()]);
                     break;
