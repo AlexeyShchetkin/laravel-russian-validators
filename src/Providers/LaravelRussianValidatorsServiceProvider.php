@@ -12,6 +12,7 @@ use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Inn\Ul;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Kpp;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\Ogrn;
 use AlexeyShchetkin\LaravelRussianValidators\Rules\Business\OgrnIp;
+use AlexeyShchetkin\LaravelRussianValidators\Rules\Personal\Snils;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -69,6 +70,11 @@ class LaravelRussianValidatorsServiceProvider extends ServiceProvider
 
         Validator::extend('russian_rs', function ($attribute, $value) {
             $validator = Validator::make([$attribute => $value], [$attribute => new Ks()]);
+            return $validator->passes();
+        });
+
+        Validator::extend('russian_snils', function ($attribute, $value) {
+            $validator = Validator::make([$attribute => $value], [$attribute => new Snils()]);
             return $validator->passes();
         });
     }
