@@ -34,12 +34,18 @@ class Inn implements Rule
         8
     ];
 
+    /**
+     * @param string $attribute
+     * @param string $value
+     * @return bool
+     */
     public function passes($attribute, $value): bool
     {
+        $value = (string)$value;
         return 12 === mb_strlen($value)
             && is_numeric($value)
-            && $this->isValidN1ControlSum($value, (int)$value[-2])
-            && $this->isValidN2ControlSum($value, (int)$value[-1]);
+            && $this->isValidN1ControlSum($value, intval(mb_substr($value, -2)))
+            && $this->isValidN2ControlSum($value, intval(mb_substr($value, -1)));
     }
 
     public function message(): string
@@ -48,7 +54,7 @@ class Inn implements Rule
     }
 
 
-    private function isValidN1ControlSum($value, $controlValue): bool
+    private function isValidN1ControlSum(string $value, int $controlValue): bool
     {
         $controlSum = 0;
         for ($i = 0; $i < sizeof(self::N1_WEIGHTS); $i++) {

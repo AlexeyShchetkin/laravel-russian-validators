@@ -8,11 +8,17 @@ use Illuminate\Contracts\Validation\Rule;
 
 class Okpo implements Rule
 {
+    /**
+     * @param string $attribute
+     * @param string $value
+     * @return bool
+     */
     public function passes($attribute, $value): bool
     {
+        $value = (string)$value;
         return (8 === mb_strlen($value) || 10 === mb_strlen($value))
             && is_numeric($value)
-            && $this->isValidControlSum($value, intval($value[-1]));
+            && $this->isValidControlSum($value, intval(mb_substr($value, -1)));
     }
 
     public function message(): string

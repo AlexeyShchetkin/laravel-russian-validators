@@ -20,8 +20,14 @@ class Snils implements Rule
         1
     ];
 
+    /**
+     * @param string $attribute
+     * @param string $value
+     * @return bool
+     */
     public function passes($attribute, $value): bool
     {
+        $value = (string)$value;
         return 11 === mb_strlen($value)
             && is_numeric($value)
             && $this->isValidControlSum($value, intval($value[-2] . $value[-1]));

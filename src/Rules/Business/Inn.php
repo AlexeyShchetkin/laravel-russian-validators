@@ -20,11 +20,17 @@ class Inn implements Rule
         8
     ];
 
+    /**
+     * @param string $attribute
+     * @param string $value
+     * @return bool
+     */
     public function passes($attribute, $value): bool
     {
+        $value = (string)$value;
         return 10 === mb_strlen($value)
             && is_numeric($value)
-            && $this->isValidN1ControlSum($value, (int)$value[-1]);
+            && $this->isValidN1ControlSum($value, intval(mb_substr($value, -1)));
     }
 
     public function message(): string

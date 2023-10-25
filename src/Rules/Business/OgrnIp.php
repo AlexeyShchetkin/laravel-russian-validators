@@ -8,11 +8,17 @@ use Illuminate\Contracts\Validation\Rule;
 
 class OgrnIp implements Rule
 {
+    /**
+     * @param string $attribute
+     * @param string $value
+     * @return bool
+     */
     public function passes($attribute, $value): bool
     {
+        $value = (string)$value;
         return 15 === mb_strlen($value)
             && is_numeric($value)
-            && $this->isValidControlSum($value, (int)$value[-1]);
+            && $this->isValidControlSum($value, intval(mb_substr($value, -1)));
     }
 
     public function message(): string
